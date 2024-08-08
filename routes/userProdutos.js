@@ -1,57 +1,17 @@
 import express from "express";
+import productById from '../src/controllers/product/productById.js';
+import createProduct from '../src/controllers/product/createProduct.js';
+import editProduct from '../src/controllers/product/editProduct.js';
+import editNameProduct from '../src/controllers/product/editNameProduct.js';
+import deleteProduct from '../src/controllers/product/deleteProduct.js';
 
 const produtos = express.Router();
 
-
-    produtos.get('/', (req, res) => {
-        res.json(
-        {
-            nome: "Raul",
-            email: "r@ifsp.edu.br",
-            rota: "get"        
-        }
-        )
-    })
-  
-  produtos.post('/', (req, res) => {
-    res.json(
-      {
-          nome: "Raul",
-          email: "r@ifsp.edu.br",
-          rota: "post"
-      }
-    )
-  })
-  
-  produtos.put('/', (req, res) => {
-    res.json(
-      {
-          nome: "Raul",
-          email: "r@ifsp.edu.br",
-          rota: "put"    
-      }
-    )
-  })
-  
-  produtos.patch('/', (req, res) => {
-    res.json(
-      {
-          nome: "Raul",
-          email: "r@ifsp.edu.br",
-          rota: "patch"       
-      }
-    )
-  })
-  
-  produtos.delete('/', (req, res) => {
-    res.json(
-      {
-          nome: "Raul",
-          email: "r@ifsp.edu.br",
-          rota: "delete"            
-      }
-    )
-  })
+produtos.get('/', productById);
+produtos.post('/', createProduct);
+produtos.put('/', editProduct);
+produtos.patch('/', editNameProduct);
+produtos.delete('/', deleteProduct);
 
  
 
