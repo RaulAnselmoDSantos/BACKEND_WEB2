@@ -1,16 +1,10 @@
-const getAll = () => {
-    return [
-        {
-            id: 1,
-            name: 'Raul',
-            email: 'raul@ifsp.edu.br'
-        },
-        {
-            id: 2,
-            name: 'Raulzito',
-            email: 'raulzito@ifsp.edu.br'
-        }
-    ]
+import {PrismaClient} from "@prisma/client"; 
+
+const prisma = new PrismaClient(); 
+
+const getAll = async () => {
+   const usuarios = await prisma.usuario.findMany();
+   return usuarios
 }
 
 const create = () => {
