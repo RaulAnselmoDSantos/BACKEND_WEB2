@@ -1,9 +1,11 @@
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource appoo {
-  provider = "mysql"
+  //provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
