@@ -20,7 +20,7 @@ model historicoveiculo {
 
 model historicovendas {
   venda_id                                              Int       @id @default(autoincrement())
-  data_venda                                            DateTime? @appoo.DateTime(0)
+  data_venda                                            String?   @appoo.VarChar(11)
   id_cliente                                            String?   @appoo.VarChar(11)
   id_produto                                            Int?
   id_usuario_venda                                      String?   @appoo.VarChar(11)
@@ -30,8 +30,8 @@ model historicovendas {
   usuario_historicovendas_id_usuario_vendaTousuario     usuario?  @relation("historicovendas_id_usuario_vendaTousuario", fields: [id_usuario_venda], references: [cpf_usuario], onDelete: Cascade, map: "historicovendas_ibfk_3")
   usuario_historicovendas_id_usuario_pagamentoTousuario usuario?  @relation("historicovendas_id_usuario_pagamentoTousuario", fields: [id_usuario_pagamento], references: [cpf_usuario], onDelete: Cascade, map: "historicovendas_ibfk_4")
 
-  @@index([id_cliente], map: "id_cliente")
-  @@index([id_produto], map: "id_produto")
+  @@index([id_cliente], map: "id_cliente1")
+  @@index([id_produto], map: "id_produto1")
   @@index([id_usuario_pagamento], map: "id_usuario_pagamento")
   @@index([id_usuario_venda], map: "id_usuario_venda")
 }
@@ -47,7 +47,7 @@ model produto {
   produto_id        Int               @id @default(autoincrement())
   produto_nome      String?           @appoo.VarChar(255)
   produto_descricao String?           @appoo.VarChar(255)
-  produto_preco     Float?            @appoo.Float
+  produto_preco     Decimal?            @appoo.Decimal
   produto_marca     String?           @appoo.VarChar(255)
   id_oficina        Int?
   historicovendas   historicovendas[]
@@ -92,7 +92,7 @@ model veiculo {
   veiculo_marca    String?            @appoo.VarChar(255)
   veiculo_placa    String?            @unique(map: "veiculo_placa") @appoo.VarChar(255)
   veiculo_motor    String?            @appoo.VarChar(255)
-  veiculo_km       Float?             @appoo.Float
+  veiculo_km       Decimal?             @appoo.Decimal
   cpf_usuario      String?            @appoo.VarChar(11)
   historicoveiculo historicoveiculo[]
   relacao          relacao[]
