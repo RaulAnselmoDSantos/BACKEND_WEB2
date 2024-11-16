@@ -1,24 +1,30 @@
-import express from 'express';
-import userRouter from '../routes/userRouter.js';
-import userProdutos from '../routes/userProdutos.js';
-import {PORT, ENVIRONMENT, HOST} from './config.js';
+//const express = require('express')
+import express from 'express'
+import userRouter from './routers/userRouter.js'
+import productRouter from './routers/productRouter.js'
+import authRouter from './routers/authRouter.js'
+import logger from './middlewares/logger.js'
+import welcome from './controllers/welcome.js'
+import routeNotFounded from './controllers/routeNotFounded.js'
+import errorHandler from './middlewares/errorHandler.js'
+import { PORT, HOST, ENVIRONMENT } from './config.js'
+import cors from 'cors'
 
-const app = express();
-const port = PORT;
+const app = express()
 
-app.use('/user', userRouter);
-app.use('/produtos', userProdutos);
+app.use(logger)
+app.use(cors())
+// middleware que converte o request body json para objeto
+app.use(express.json())
 
-// app.get('/', (req, res) => {
-//   res.send('Hello World!')
-  
-// })
+app.get('/', welcome)
+app.use('/user', userRouter)
+app.use('/product', productRouter)
+app.use('/auth', authRouter)
+app.use('*', routeNotFounded)
 
-// app.post('/', (req, res) => {
-//   res.send('Hello World!')
-  
-// })
+app.use(errorHandler)
 
-app.listen(port, () => {
-  console.log(`Servidor rodando no ambiente ${ENVIRONMENT} em ${ENVIRONMENT == 'production' ? HOST :  HOST+':'+PORT}`)
+app.listen(PORT, () => {
+  console.log(`Servidor rodando no ambiente ${ENVIRONMENT} em ${ENVIRONMENT == 'production' ? HOST : HOST+':'+PORT}`)
 })

@@ -1,11 +1,5 @@
 const editProduct = (req, res) => {
-    res.json(
-      {
-          nome: "Raul",
-          email: "r@ifsp.edu.br",
-          rota: "put"    
-      }
-    )
-  }
+    res.json({message: "Rota POST /product"})
+}
 
-export default editProduct;
+export default editProduct

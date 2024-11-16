@@ -1,8 +1,6 @@
 import { create, validateUserToCreate } from "../../models/userModel.js"
-import { v4 as uuid } from 'uuid'
-import bcrypt from 'bcrypt'
 
-const createUser = async (req, res, next) => {
+const logout = async (req, res, next) => {
    try{
         const user = req.body
         const userValidated = validateUserToCreate(user)
@@ -39,4 +37,4 @@ const createUser = async (req, res, next) => {
     }
 }
 
-export default createUser
+export default logout

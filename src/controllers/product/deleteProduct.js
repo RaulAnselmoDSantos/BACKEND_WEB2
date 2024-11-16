@@ -1,11 +1,5 @@
 const deleteProduct = (req, res) => {
-    res.json(
-      {
-          nome: "Raul",
-          email: "r@ifsp.edu.br",
-          rota: "delete"            
-      }
-    )
-  }
+    res.json({message: "Rota DELETE /product"})
+}
 
-export default deleteProduct; 
+export default deleteProduct

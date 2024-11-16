@@ -1,10 +1,5 @@
 const createProduct = (req, res) => {
-    res.json(
-      {
-          nome: "Café",
-          tipo: "comestiveis",
-          rota: "post"
-      }
-    )}
+    res.json({message: "Rota POST /product"})
+}
 
-export default createProduct;
+export default createProduct
